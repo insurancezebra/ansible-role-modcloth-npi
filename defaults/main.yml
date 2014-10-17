@@ -4,7 +4,7 @@ npi_bin: /usr/local/bin/npi
 npi_download: https://download.newrelic.com/npi/release/install-npi-linux-debian-x64.sh
 npi_java_package: openjdk-7-jre
 
-# list of npi plugins to install (and optional templates for configs)
+# list of npi plugins to install (and configuration thereof -- see README)
 npi_plugins: {}
 
 # external variables
