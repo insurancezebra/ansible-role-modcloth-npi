@@ -1,6 +1,11 @@
 ---
+- name: "get npi installer"
+  get_url:
+    url="{{npi_download}}"
+    dest=/tmp/npi.sh
+    mode=0755
 - name: "install npi"
-  shell: bash -c "$(curl -sSL {{npi_download}})"
+  shell: /tmp/npi.sh
     creates="{{npi_prefix}}/npi"
   environment:
     LICENSE_KEY: '{{new_relic_license_key}}'
