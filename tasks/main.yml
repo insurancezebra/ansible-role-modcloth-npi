@@ -1,7 +1,7 @@
 ---
 - name: "get npi installer"
   get_url:
-    url="{{npi_download}}"
+    url="{{npi_remote_install_script}}"
     dest=/tmp/npi.sh
     mode=0755
 - name: "install npi"
@@ -15,7 +15,7 @@
 - name: "add npi binary"
   template:
     src=npi.j2
-    dest={{npi_bin}}
+    dest={{npi_bin_path}}
     mode=0755
 - name: "install java"
   apt: name="{{npi_java_package}}" state=present

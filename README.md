@@ -19,8 +19,8 @@ See `defaults/main.yml` for defaults.
 
 ```yml
 npi_prefix: # Location to install NPI
-npi_bin: # Location to place npi binary (should be in $PATH)
-npi_download: # URL to download the installer from
+npi_bin_path: # Location to place npi binary (should be in $PATH)
+npi_remote_install_script: # URL to download the installer from
 npi_java_package: # Java runtime package name
 
 # List of npi plugins to install
