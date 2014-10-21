@@ -11,8 +11,8 @@
     LICENSE_KEY: '{{new_relic_license_key}}'
     PREFIX: "{{npi_prefix}}"
     UNATTENDED: 'true'
-# Default binary expects you to be running from the npi_prefix
-- name: "add npi binary"
+# Default executable expects you to be running from the npi_prefix
+- name: "add npi executable"
   template:
     src=npi.j2
     dest={{npi_bin_path}}
