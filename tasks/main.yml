@@ -1,0 +1,44 @@
+---
+- name: "get npi installer"
+  get_url:
+    url="{{npi_remote_install_script}}"
+    dest=/tmp/npi.sh
+    mode=0755
+- name: "install npi"
+  shell: /tmp/npi.sh
+    creates="{{npi_prefix}}/npi"
+  environment:
+    LICENSE_KEY: '{{new_relic_license_key}}'
+    PREFIX: "{{npi_prefix}}"
+    UNATTENDED: 'true'
+# Default executable expects you to be running from the npi_prefix
+- name: "add npi executable"
+  template:
+    src=npi.j2
+    dest={{npi_bin_path}}
+    mode=0755
+- name: "install java"
+  apt: name="{{npi_java_package}}" state=present
+- name: "fetch npi plugins"
+  shell: npi fetch "{{item}}" -y
+    creates="{{npi_prefix}}/plugins/{{item.key}}"
+  with_dict: npi_plugins
+- name: "get plugin location"
+  shell: "npi where {{item.key}}"
+  register: npi_plugin_locations
+  with_dict: npi_plugins
+  changed_when: no
+- name: "add plugin services"
+  template:
+    src=npi-plugin-upstart.conf.j2
+    dest=/etc/init/{{item.key}}.conf
+  with_dict: npi_plugins
+- name: "add plugin configs"
+  template:
+    src="{{npi_plugins[item.item].template}}"
+    dest="{{item.stdout}}/config/plugin.json"
+  when: npi_plugins[item.item].template is defined
+  with_items: npi_plugin_locations.results
+- name: "restart plugin services"
+  service: name="{{item.key}}" state=restarted
+  with_dict: npi_plugins
