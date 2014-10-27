@@ -31,10 +31,19 @@ npi_java_package: # Java runtime package name
 #   template: # Template to use to generate plugin.json (plugin.json is written only if this is set)
 npi_plugins:
 
+# the below variables are used to generate newrelic.json for the plugin
+# see: https://github.com/newrelic-platform/newrelic_memcached_java_plugin for example
 new_relic_license_key: # New Relic license key
-new_relic_log_level: # Log level for plugin 
-new_relic_log_file_name: # Log filename for plugin
-new_relic_file_path: # Log file path for plugin
+new_relic_log_level: # log level for plugin 
+new_relic_log_file_name: # log filename for plugin
+new_relic_file_path: # log file path for plugin
+new_relic_log_limit_in_kbytes: # limit for log file size
+
+# proxy settings (if collection goes through an outbound proxy)
+new_relic_proxy_host
+new_relic_proxy_port
+new_relic_proxy_username
+new_relic_proxy_password
 ```
 
 Dependencies
