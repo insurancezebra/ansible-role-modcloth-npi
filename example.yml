@@ -2,4 +2,5 @@
 - hosts: all
   roles:
   - role: modcloth.npi
+    npi_plugins:
       com.newrelic.plugins.mysql.instance:
