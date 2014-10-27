@@ -20,7 +20,7 @@
 - name: "install java"
   apt: name="{{npi_java_package}}" state=present
 - name: "fetch npi plugins"
-  shell: npi fetch "{{item}}" -y
+  shell: npi fetch "{{item.key}}" -y
     creates="{{npi_prefix}}/plugins/{{item.key}}"
   with_dict: npi_plugins
 - name: "get plugin location"
