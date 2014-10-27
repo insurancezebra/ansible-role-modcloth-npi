@@ -33,6 +33,11 @@
     src=npi-plugin-upstart.conf.j2
     dest=/etc/init/{{item.key}}.conf
   with_dict: npi_plugins
+- name: "add newrelic configs"
+  template:
+    src="newrelic.json.j2"
+    dest="{{item.stdout}}/config/newrelic.json"
+  with_items: npi_plugin_locations.results
 - name: "add plugin configs"
   template:
     src="{{npi_plugins[item.item].template}}"

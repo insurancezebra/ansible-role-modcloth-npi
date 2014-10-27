@@ -32,6 +32,9 @@ npi_java_package: # Java runtime package name
 npi_plugins:
 
 new_relic_license_key: # New Relic license key
+new_relic_log_level: # Log level for plugin 
+new_relic_log_file_name: # Log filename for plugin
+new_relic_file_path: # Log file path for plugin
 ```
 
 Dependencies

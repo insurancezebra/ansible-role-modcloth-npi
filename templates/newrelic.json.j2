@@ -1,0 +1,6 @@
+{
+  "license_key": "{{new_relic_license_key}}",
+  "log_level": "{{new_relic_log_level}}",
+  {% if new_relic_log_file_name is defined %}"log_file_name": "{{new_relic_log_file_name}}",{% endif %}
+  {% if new_relic_log_file_path is defined %}"log_file_path": "{{new_relic_log_file_path}}",{% endif %}
+}
