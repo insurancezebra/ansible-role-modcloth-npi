@@ -18,7 +18,7 @@
     dest={{npi_bin_path}}
     mode=0755
 - name: "install java"
-  apt: name="{{npi_java_package}}" state=present
+  apt: name="{{npi_java_package}}" state=present update_cached=yes
 - name: "fetch npi plugins"
   shell: npi fetch "{{item.key}}" -y
     creates="{{npi_prefix}}/plugins/{{item.key}}"
