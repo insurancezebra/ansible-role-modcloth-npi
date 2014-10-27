@@ -2,6 +2,8 @@ language: python
 install:
 - sudo apt-get update && sudo apt-get install openjdk-7-jre
 - pip install -r requirements.txt
+- echo $(which node)
+- echo $(node --version)
 script:
 - echo $(which node)
 - echo $(node --version)
