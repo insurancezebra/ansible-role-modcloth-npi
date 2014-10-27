@@ -1,7 +1,7 @@
 language: python
 install:
-- apt-get update && apt-get install openjdk-7-jre nodejs npm
-- rm -f /usr/local/bin/node && ln -svf /usr/local/bin/nodejs /usr/local/bin/node
+- sudo apt-get update && apt-get install openjdk-7-jre nodejs npm
+- sudo rm -f /usr/local/bin/node && sudo ln -svf /usr/local/bin/nodejs /usr/local/bin/node
 - pip install -r requirements.txt
 script:
 - ansible-playbook -i 127.0.0.1, -c local -s -e ssh_user=travis -e hostname=travis-tmp-host.demo.modcloth.com
