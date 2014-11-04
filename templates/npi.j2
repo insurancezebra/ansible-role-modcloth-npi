@@ -1,8 +1,6 @@
 #!/bin/bash
 # {{ ansible_managed }}
 
-echo $(which node)
-echo $(node --version)
 node {{ npi_prefix }}/npi.js "$@"
 
 # vim ft=sh
