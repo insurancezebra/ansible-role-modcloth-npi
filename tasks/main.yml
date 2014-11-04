@@ -17,10 +17,8 @@
     src=npi.j2
     dest={{npi_bin_path}}
     mode=0755
-- name: "install java"
-  apt: name="{{npi_java_package}}" state=present
 - name: "fetch npi plugins"
-  shell: npi fetch "{{item}}" -y
+  shell: npi fetch "{{item.key}}" -y
     creates="{{npi_prefix}}/plugins/{{item.key}}"
   with_dict: npi_plugins
 - name: "get plugin location"
@@ -33,6 +31,11 @@
     src=npi-plugin-upstart.conf.j2
     dest=/etc/init/{{item.key}}.conf
   with_dict: npi_plugins
+- name: "add newrelic configs"
+  template:
+    src="newrelic.json.j2"
+    dest="{{item.stdout}}/config/newrelic.json"
+  with_items: npi_plugin_locations.results
 - name: "add plugin configs"
   template:
     src="{{npi_plugins[item.item].template}}"

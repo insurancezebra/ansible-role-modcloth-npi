@@ -1,6 +1,8 @@
 language: python
 install:
+- sudo apt-get update && sudo apt-get install openjdk-7-jre
 - pip install -r requirements.txt
+- sudo ln -svf $(which node) /usr/local/bin/node # Make sure node is available when ansible is SSHing to localhost
 script:
 - ansible-playbook -i 127.0.0.1, -c local -s -e ssh_user=travis -e hostname=travis-tmp-host.demo.modcloth.com
   -vvvv ./example.yml

@@ -2,3 +2,6 @@
 - hosts: all
   roles:
   - role: modcloth.npi
+    new_relic_license_key: "ABCD"
+    npi_plugins:
+      com.newrelic.plugins.mysql.instance:
